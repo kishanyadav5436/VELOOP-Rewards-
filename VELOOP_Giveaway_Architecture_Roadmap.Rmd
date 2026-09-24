@@ -1,0 +1,230 @@
+---
+title: "VELOOP Rewards — Giveaway Module"
+subtitle: "Full Architecture & Development Roadmap"
+author: "VELOOP Rewards"
+date: "`r format(Sys.Date(), '%B %d, %Y')`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+    toc_float: true
+    theme: flatly
+    number_sections: true
+  pdf_document:
+    toc: true
+    number_sections: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+library(knitr)
+```
+
+Frontend architecture, data flow design, and a week-by-week execution plan for the
+Giveaway Page, Banner, Participation, and Winner system.
+
+---
+
+# Full Folder Architecture
+
+The project is split into two phases with two top-level folders: **frontend/** (build
+first, fully mock-data driven) and **backend/** (build second, once the frontend is
+approved). The key rule throughout: every component reads from `data/` or
+`services/` — never hardcodes a prize name, fee, or status directly.
+
+```
+veloop-giveaway/
+|
++-- frontend/
+|   +-- public/
+|   |   +-- assets/                    (prize images, icons from provided assets)
+|   |
+|   +-- src/
+|   |   +-- components/
+|   |   |   +-- GiveawayHero/
+|   |   |   +-- GiveawayBanner/
+|   |   |   +-- Countdown/
+|   |   |   +-- GiveawayStats/
+|   |   |   +-- PrizeCard/
+|   |   |   +-- FeaturedGiveaways/
+|   |   |   +-- HowToParticipate/
+|   |   |   +-- WinnerSlider/
+|   |   |   +-- WinnersTabs/
+|   |   |   +-- WinnerCard/
+|   |   |   +-- PreviousWinnerCard/
+|   |   |   +-- PrizeClaimModal/
+|   |   |   +-- JoinConfirmModal/
+|   |   |   +-- BalanceIndicator/
+|   |   |   +-- GiveawayRules/
+|   |   |   +-- FAQ/
+|   |   |   +-- TrustSection/
+|   |   |   +-- GiveawayLoader/         (custom themed loader, sec 51-55)
+|   |   |   +-- EmptyState/
+|   |   |   +-- ErrorState/
+|   |   |   +-- Skeletons/
+|   |   |
+|   |   +-- pages/
+|   |   |   +-- GiveawayHome/           (main listing page)
+|   |   |   +-- GiveawayDetails/        (/giveaway/:slug - individual page)
+|   |   |   +-- NotFound/
+|   |   |
+|   |   +-- data/
+|   |   |   +-- giveawayData.js         (mock API-shaped data)
+|   |   |   +-- mockSession.js          (fake logged-in user, balances)
+|   |   |   +-- mockWinners.js
+|   |   |
+|   |   +-- hooks/
+|   |   |   +-- useCountdown.js
+|   |   |   +-- useGiveawayStatus.js
+|   |   |   +-- useBalanceCheck.js
+|   |   |   +-- useGiveaway.js          (later wraps real fetch calls)
+|   |   |
+|   |   +-- context/
+|   |   |   +-- UserContext.jsx         (mock auth/session state)
+|   |   |
+|   |   +-- services/
+|   |   |   +-- giveawayApi.js          (stub functions -> real fetch later)
+|   |   |
+|   |   +-- utils/
+|   |   |   +-- currencyValidation.js   (VEs/SVEs/Tokens rules, sec 89)
+|   |   |   +-- maskUserId.js           (VE****42 style masking)
+|   |   |   +-- formatTime.js
+|   |   |
+|   |   +-- styles/                     (global CSS variables, tokens)
+|   |   +-- App.jsx
+|   |   +-- main.jsx
+|   |
+|   +-- vite.config.js
+|
++-- backend/                            (Phase 2 - do not start yet)
+    +-- src/
+    |   +-- controllers/
+    |   |   +-- giveawayController.js
+    |   |   +-- participationController.js
+    |   |   +-- winnerController.js
+    |   |   +-- claimController.js
+    |   |   +-- adminGiveawayController.js
+    |   +-- models/
+    |   |   +-- Giveaway.js
+    |   |   +-- Prize.js
+    |   |   +-- GiveawayParticipation.js
+    |   |   +-- GiveawayEntryTransaction.js
+    |   |   +-- GiveawayWinner.js
+    |   |   +-- PrizeClaim.js
+    |   |   +-- FraudEvent.js
+    |   |   +-- AuditLog.js
+    |   +-- routes/
+    |   +-- middleware/
+    |   |   +-- authMiddleware.js
+    |   |   +-- rateLimitMiddleware.js
+    |   |   +-- validationMiddleware.js
+    |   |   +-- fraudMiddleware.js
+    |   |   +-- errorMiddleware.js
+    |   +-- services/
+    |   |   +-- giveawayService.js
+    |   |   +-- participationService.js
+    |   |   +-- balanceService.js
+    |   |   +-- fraudService.js
+    |   |   +-- winnerService.js
+    |   +-- utils/
+    |   +-- validators/
+    |   +-- config/
+    |   +-- app.js
+    +-- server.js
+```
+
+---
+
+# State & Data Flow Design
+
+## UserContext
+
+Holds `isLoggedIn`, `currentUserId`, and `balances` (VEs, SVEs, Tokens). Fully
+mocked for now; swapped for real auth once the backend exists.
+
+## services/giveawayApi.js
+
+Exports functions such as `getCurrentGiveaways()`, `getGiveawayBySlug()`,
+`joinGiveaway()`, and `submitClaim()`. Right now they return mock data behind a
+fake delay (to honestly test loading states). Later, only the function bodies
+change to real `fetch()` calls — nothing else in the app needs to change.
+
+## useGiveawayStatus(giveaway)
+
+A single hook that is the one source of truth for `ACTIVE` / `ENDED` /
+`UPCOMING`, used by every component instead of scattering status checks across
+the codebase.
+
+> **Architectural rule:** the frontend is built exactly as if a real backend
+> already exists. Components never see raw hardcoded values — only data
+> returned from the `data/` and `services/` layers. This is what allows Phase 2
+> (backend integration) to be a drop-in swap instead of a rewrite.
+
+---
+
+# Roadmap
+
+Suggested pace: 3–4 weeks for the frontend phase, followed by a separate
+backend phase once the frontend is reviewed and approved.
+
+## Week 1 — Foundation
+
+- Scaffold project (Vite + React), install dependencies, build the folder skeleton
+- Write `giveawayData.js` and `mockSession.js` with realistic, API-shaped data (sections 36–38, 85 of the task doc)
+- Build `UserContext`, `useCountdown`, and `useGiveawayStatus` hooks
+- Build the Hero / Banner section (static layout first, no live logic yet)
+
+## Week 2 — Core Home Page
+
+- Wire the Countdown component to the real hook
+- Build the Statistics section, Prize Cards grid, and Winner Slider
+- Build the How-to-Participate timeline, Trust section, and FAQ accordion
+- Build Winners Tabs and Previous Winners Tabs, including the correct empty state for an active giveaway that has no winners yet (section 21)
+
+## Week 3 — Individual Giveaway Page + Join Flow
+
+- Set up routing for `/giveaway/:slug`
+- Build the Prize Information card, entry-fee display, and balance-check UI
+- Build the Join Confirmation modal, success state, and already-joined state
+- Build the login-required redirect flow for unauthenticated users
+
+## Week 4 — Winner / Claim System + Polish
+
+- Winner detection: `currentUserId === winner.userId`
+- Claim modal with branching logic for physical prize vs. gift-card form, based on `prize.type`
+- Claim states: submitted, processing, completed, expired
+- Loading skeletons, error states, and empty states across all sections
+- Full responsive pass: mobile -> tablet -> desktop
+- Accessibility pass: labels, visible focus states, keyboard navigation
+- Write the README, capture screenshots, deploy to Vercel
+
+## Phase 2 — Backend (after frontend is approved / submitted)
+
+- Scaffold the backend, define MongoDB models, build auth middleware
+- Build the join endpoint with transaction handling and fraud checks
+- Build winner-selection and prize-claim endpoints
+- Swap the mock functions in `services/giveawayApi.js` for real fetch calls — this should be close to a drop-in replacement if Phase 1 was structured correctly
+
+## Summary
+
+```{r roadmap-table}
+roadmap <- data.frame(
+  Week = c("1", "2", "3", "4", "Phase 2"),
+  Focus = c("Foundation", "Home page", "Detail page", "Claim + polish", "Backend"),
+  `Key Deliverables` = c(
+    "Project scaffold, mock data model, hooks, static banner",
+    "Countdown, stats, prize cards, winner slider, tabs, FAQ",
+    "Routing, prize info, join confirmation, login gate",
+    "Claim system, loaders, responsive + a11y pass, deploy",
+    "Models, auth, join/claim/winner endpoints, real API swap"
+  ),
+  check.names = FALSE
+)
+kable(roadmap)
+```
+
+---
+
+*Prepared as a working reference for the VELOOP Rewards Giveaway module build.
+Section numbers referenced above correspond to the original task specification
+document.*
