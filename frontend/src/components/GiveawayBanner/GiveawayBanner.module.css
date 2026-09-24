@@ -1,0 +1,102 @@
+.banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  padding: var(--space-4) var(--space-8);
+  background: linear-gradient(90deg, rgba(108,63,232,0.18) 0%, rgba(245,166,35,0.12) 100%);
+  border-bottom: 1px solid var(--color-border);
+  backdrop-filter: blur(12px);
+  flex-wrap: wrap;
+}
+
+.liveTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--text-xs);
+  font-weight: var(--fw-bold);
+  color: var(--color-error);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  animation: blink 1.5s ease-in-out infinite;
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: var(--text-base);
+  font-weight: var(--fw-bold);
+  color: var(--color-text-primary);
+  margin-top: var(--space-1);
+}
+
+.value {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+.value strong { color: var(--color-accent); }
+
+.countdown {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-2) var(--space-3);
+  min-width: 52px;
+}
+
+.num {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  font-weight: var(--fw-bold);
+  color: var(--color-text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.label {
+  font-size: 10px;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-1);
+}
+
+.cta {
+  padding: var(--space-2) var(--space-6);
+  background: var(--gradient-primary);
+  color: #fff;
+  border-radius: var(--radius-full);
+  font-weight: var(--fw-semibold);
+  font-size: var(--text-sm);
+  transition: transform var(--transition-fast);
+  white-space: nowrap;
+}
+.cta:hover { transform: translateY(-1px); color: #fff; }
+
+.participants {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+@media (max-width: 768px) {
+  .banner { justify-content: center; text-align: center; }
+  .right  { align-items: center; }
+}

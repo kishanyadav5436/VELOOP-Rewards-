@@ -1,0 +1,4 @@
+.wrap { display: flex; gap: var(--space-3); align-items: center; }
+.item { display: flex; flex-direction: column; align-items: center; padding: var(--space-1) var(--space-3); background: rgba(108,63,232,0.12); border: 1px solid rgba(108,63,232,0.25); border-radius: var(--radius-full); }
+.amount   { font-size: var(--text-sm); font-weight: var(--fw-bold); color: var(--color-text-primary); }
+.currency { font-size: 10px; color: var(--color-primary-light); text-transform: uppercase; letter-spacing: 0.06em; }

@@ -1,0 +1,28 @@
+﻿node_modules
+dist
+.env
+.env.local
+
+# vite
+.vite
+
+# logs
+*.log
+npm-debug.log*
+
+# editor
+.vscode
+.idea
+
+# os
+.DS_Store
+Thumbs.db
+
+# rmd / r stuff
+.Rhistory
+.RData
+.Rproj.user
+VELOOP_Giveaway_Architecture_Roadmap.Rmd
+
+# deploy
+.vercel

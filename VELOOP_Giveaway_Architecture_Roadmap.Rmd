@@ -228,3 +228,268 @@ kable(roadmap)
 *Prepared as a working reference for the VELOOP Rewards Giveaway module build.
 Section numbers referenced above correspond to the original task specification
 document.*
+
+---
+
+# Daily Execution Plan
+
+> Based on the **Official Internship Regulations & Work Schedule** (PDF) issued by
+> CEO Ayan Alam. Working hours: **9:30 AM – 6:15 PM, Monday – Friday only.**
+
+## The PDF Cycle Rule
+
+The PDF mandates a repeating 3-day professional work cycle throughout the internship:
+
+```{r cycle-table}
+cycle <- data.frame(
+  `Day Type` = c(
+    "Day 1 — Review Day",
+    "Day 2 — Work Day",
+    "Day 3 — Re-review Day",
+    "Day 4+ — Repeat"
+  ),
+  Purpose = c(
+    "Start → Work → Share → Review",
+    "Improve → Fix → Develop",
+    "Reshare → Re-review → Next Feedback",
+    "Same cycle repeats throughout internship"
+  ),
+  `Key Rule` = c(
+    "Share GitHub/live link, ask questions, request feedback",
+    "NO new review requests — apply feedback and keep building",
+    "Share updated progress, raise Day 2 unresolved questions",
+    "Never repeat the same question; always try to solve yourself first"
+  ),
+  check.names = FALSE
+)
+kable(cycle)
+```
+
+> **Important:** Before asking any question, verify — Was this already answered?
+> Was it in the project requirements? Have I tried solving it myself?
+
+---
+
+## Week 1 — Foundation (Days 1–5)
+
+### Day 1 (Mon) — Scaffold & First Share `[REVIEW DAY]`
+
+- Initialize Vite + React: `npm create vite@latest veloop-giveaway -- --template react`
+- Install dependencies: `react-router-dom`, `date-fns`, CSS modules
+- Create full folder skeleton: `components/`, `pages/`, `data/`, `hooks/`,
+  `context/`, `services/`, `utils/`, `styles/`
+- Write global CSS variables/tokens in `src/styles/`
+- Start `giveawayData.js` with realistic, API-shaped mock data
+- **End of day:** Push to GitHub → Share link → Ask questions → Request review
+
+### Day 2 (Tue) — Deepen Foundation `[WORK DAY]`
+
+- Complete `giveawayData.js` with full prize entries
+- Write `mockSession.js` — fake logged-in user with VEs/SVEs/Tokens balances
+- Write `mockWinners.js` — sample winner entries with masked user IDs
+- Build `UserContext.jsx` — `isLoggedIn`, `currentUserId`, `balances`
+- Build `useCountdown.js` hook — countdown to `giveaway.endDate`
+- Build `useGiveawayStatus.js` — single source of truth for ACTIVE/ENDED/UPCOMING
+- Apply all Day 1 review feedback
+- **Do NOT request a new review today**
+
+### Day 3 (Wed) — Static Banner + Re-review `[REVIEW DAY]`
+
+- Build `GiveawayHero/` component — static layout, prize name from data
+- Build `GiveawayBanner/` component — using data layer only
+- Build `GiveawayLoader/`, `EmptyState/`, `ErrorState/` shells
+- **End of day:** Reshare GitHub → Explain improvements → Ask Day 2 questions → Request re-review
+
+### Day 4 (Thu) — Service Layer + Utils `[WORK DAY]`
+
+- Apply all Day 3 feedback
+- Build `BalanceIndicator/` component (reads from `UserContext`)
+- Build `giveawayApi.js` service stubs: `getCurrentGiveaways()`,
+  `getGiveawayBySlug()`, `joinGiveaway()`, `submitClaim()` with mock delay
+- Write `currencyValidation.js`, `maskUserId.js`, `formatTime.js`
+
+### Day 5 (Fri) — Hooks + Week 1 Wrap-up `[REVIEW DAY]`
+
+- Connect `useGiveaway.js` to wrap all service calls
+- Build `useBalanceCheck.js` hook
+- Ensure zero hardcoded values across all components
+- Light responsive pass on Banner + Hero; run linter
+- **End of day:** Reshare GitHub → Summarize Week 1 → Ask questions → Request re-review
+
+---
+
+## Week 2 — Core Home Page (Days 6–10)
+
+### Day 6 (Mon) — Countdown + Stats `[REVIEW DAY]`
+
+- Wire `Countdown/` to `useCountdown` hook — live ticking display
+- Build `GiveawayStats/` — participant count, prize count, total value from data
+- Begin `PrizeCard/` — prize image, name, fee, status badge
+- Apply all Week 1 feedback
+- **End of day:** Share → Ask → Review
+
+### Day 7 (Tue) — Prize Cards + Grid `[WORK DAY]`
+
+- Complete `PrizeCard/` with hover effects and status-based styling
+- Build `FeaturedGiveaways/` — grid layout using `getCurrentGiveaways()`
+- Build `Skeletons/` — loading skeleton for `PrizeCard`
+- Apply Day 6 feedback
+
+### Day 8 (Wed) — Winner Slider + Tabs `[REVIEW DAY]`
+
+- Build `WinnerSlider/` — auto-scrolling slider of latest winners
+- Build `WinnersTabs/` — "Active Giveaway Winners" / "Previous Winners" tabs
+- Build `WinnerCard/` and `PreviousWinnerCard/` with masked userId display
+- Handle correct empty state for active giveaway with no winners yet (Section 21)
+- **End of day:** Reshare → Explain → Ask Day 7 questions → Request re-review
+
+### Day 9 (Thu) — How-to + Trust + FAQ `[WORK DAY]`
+
+- Apply Day 8 feedback
+- Build `HowToParticipate/` — step-by-step visual timeline
+- Build `TrustSection/` — trust signals and stats
+- Build `FAQ/` — accordion-style expandable Q&A
+- Build `GiveawayRules/` — rules display component
+
+### Day 10 (Fri) — Home Page Assembly `[REVIEW DAY]`
+
+- Connect `GiveawayHome` page — assemble all Week 2 components
+- Mobile-first responsive pass across all Week 2 components
+- **End of day:** Demo countdown, stats, cards, slider → Ask questions → Request re-review
+
+---
+
+## Week 3 — Individual Giveaway Page + Join Flow (Days 11–15)
+
+### Day 11 (Mon) — Routing + Detail Page Shell `[REVIEW DAY]`
+
+- Set up routing: `/` → `GiveawayHome`, `/giveaway/:slug` → `GiveawayDetails`
+- Build `GiveawayDetails/` page shell connected to `getGiveawayBySlug(slug)`
+- Apply all Week 2 feedback
+- **End of day:** Share routing demo → Ask → Review
+
+### Day 12 (Tue) — Prize Info + Entry Fee `[WORK DAY]`
+
+- Apply Day 11 feedback
+- Build Prize Information card on detail page
+- Build entry-fee display section (reads fee from data, never hardcoded)
+- Wire `useBalanceCheck` — show sufficient / insufficient balance UI
+
+### Day 13 (Wed) — Join Modal `[REVIEW DAY]`
+
+- Build `JoinConfirmModal/` — confirmation step before spending tokens
+- Join success state — updated balance display
+- Already-joined state — "You're already in this giveaway"
+- Build login-required redirect flow for unauthenticated users
+- **End of day:** Demo join flow end-to-end → Ask Day 12 questions → Request re-review
+
+### Day 14 (Thu) — Detail Page Polish `[WORK DAY]`
+
+- Apply Day 13 feedback
+- Connect detail page to full data flow: status, countdown, prize, join state
+- Responsive pass on `GiveawayDetails` page
+
+### Day 15 (Fri) — Week 3 Review `[REVIEW DAY]`
+
+- Full routing test: `/` and `/giveaway/:slug` flows
+- Test logged-in vs. logged-out states; test join flow: pending → success → already-joined
+- **End of day:** Reshare Week 3 demo → Ask questions → Request re-review
+
+---
+
+## Week 4 — Winner / Claim System + Polish (Days 16–20)
+
+### Day 16 (Mon) — Winner Detection `[REVIEW DAY]`
+
+- Implement winner detection: `currentUserId === winner.userId`
+- Show "You won!" banner/state when the current user is the winner
+- Apply all Week 3 feedback
+- **End of day:** Share winner detection demo → Ask → Review
+
+### Day 17 (Tue) — Claim Modal `[WORK DAY]`
+
+- Apply Day 16 feedback
+- Build `PrizeClaimModal/` with branching logic by `prize.type`:
+  - `'physical'` → shipping address form
+  - `'gift-card'` → gift card details form
+- Claim states: `submitted` → `processing` → `completed` / `expired`
+
+### Day 18 (Wed) — Loading + Error + Empty States `[REVIEW DAY]`
+
+- Build/complete loading skeletons for all major sections
+- Build error states for failed API calls; build empty states for all sections
+- Every async flow: loading → data / error / empty
+- **End of day:** Reshare with all states working → Ask Day 17 questions → Request re-review
+
+### Day 19 (Thu) — Responsive + Accessibility Pass `[WORK DAY]`
+
+- Apply Day 18 feedback
+- Full responsive pass: mobile → tablet → desktop (all pages and components)
+- Accessibility: `alt` text on all images, labels on all interactive elements,
+  visible focus states, semantic HTML, modal focus trapping
+
+### Day 20 (Fri) — README + Deploy + Final Review `[REVIEW DAY]`
+
+- Write `README.md`: overview, tech stack, folder structure, setup, screenshots
+- Deploy to Vercel: `vercel --prod`; final cross-browser test
+- **End of day:** Share live Vercel link + GitHub → Request final frontend review
+- **Await explicit approval before starting Phase 2**
+
+---
+
+## Phase 2 — Backend Plan
+
+> **Do not start Phase 2 until the frontend is approved.**
+
+```{r backend-table}
+backend <- data.frame(
+  Step = 1:8,
+  Task = c(
+    "Scaffold Node.js/Express backend",
+    "Define MongoDB models: Giveaway, Prize, GiveawayParticipation, GiveawayEntryTransaction, GiveawayWinner, PrizeClaim, FraudEvent, AuditLog",
+    "Build authMiddleware.js",
+    "Build join endpoint with transaction handling and fraud checks",
+    "Build winner-selection endpoint",
+    "Build prize-claim endpoint",
+    "Build admin giveaway controller",
+    "Swap mock functions in services/giveawayApi.js for real fetch() calls (drop-in swap)"
+  )
+)
+kable(backend)
+```
+
+---
+
+## Daily Checklist
+
+Every working day should follow this checklist:
+
+**Morning (9:30 AM)**
+
+- Review yesterday's progress and plan 3–4 key deliverables for today
+- Check for any new feedback received in the group
+
+**During Work (9:30 AM – 6:15 PM)**
+
+- Components always read from `data/` or `services/` — never hardcode values
+- Note any blockers or questions; do not ask immediately — resolve on the next Review Day
+
+**End of Day**
+
+- Push all code to GitHub
+- On **Review Days**: Share link, explain progress, ask questions, request feedback
+- On **Work Days**: Continue improving — do NOT request a new review
+
+---
+
+## Key Architectural Rules
+
+1. **No hardcoded values** — every prize name, fee, and status comes from `data/` or `services/`
+2. **`useGiveawayStatus` is the single source of truth** for ACTIVE/ENDED/UPCOMING across all components
+3. **Service layer is mock now, real later** — function signatures stay identical; only bodies change in Phase 2
+4. **Frontend built as if the backend exists** — Phase 2 becomes a drop-in swap, not a rewrite
+5. **Group polls are mandatory** — respond to all official polls within the given time
+
+---
+
+*Daily plan aligned with official PDF regulations issued by CEO Ayan Alam, VELOOP Rewards.*
