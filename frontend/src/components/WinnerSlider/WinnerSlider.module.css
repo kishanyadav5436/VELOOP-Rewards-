@@ -1,26 +1,64 @@
-.section { padding: var(--space-12) 0; overflow: hidden; }
+/* ============================================================
+   WinnerSlider — Auto-scrolling Winners Marquee
+   ============================================================ */
+
+.section {
+  padding: var(--space-16) 0;
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(108, 63, 232, 0.04) 50%,
+    transparent 100%
+  );
+}
+
+.header {
+  text-align: center;
+  margin-bottom: var(--space-8);
+}
 
 .heading {
   font-family: var(--font-heading);
   font-size: var(--text-3xl);
   font-weight: var(--fw-bold);
-  text-align: center;
-  margin-bottom: var(--space-8);
 }
 
+.sub {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  margin-top: var(--space-2);
+}
+
+/* ── Slider ──────────────────────────────────────────────────── */
 .sliderWrap {
   overflow: hidden;
-  mask-image: linear-gradient(90deg, transparent 0%, black 10%, black 90%, transparent 100%);
+  /* Fade edges */
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
 }
 
 .track {
   display: flex;
   gap: var(--space-4);
-  animation: scroll 30s linear infinite;
   width: max-content;
+  animation: scroll 35s linear infinite;
 }
 .track:hover { animation-play-state: paused; }
 
+/* ── Card ────────────────────────────────────────────────────── */
 .card {
   display: flex;
   align-items: center;
@@ -28,18 +66,96 @@
   padding: var(--space-4) var(--space-5);
   background: var(--gradient-card);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  min-width: 260px;
+  border-radius: var(--radius-lg);
+  min-width: 280px;
   flex-shrink: 0;
-  transition: border-color var(--transition-fast);
+  transition: border-color var(--transition-fast), transform var(--transition-fast);
+  cursor: default;
 }
-.card:hover { border-color: var(--color-accent); }
+.card:hover {
+  border-color: var(--color-accent);
+  transform: translateY(-3px);
+}
 
-.avatar { font-size: 2rem; }
-.user   { font-weight: var(--fw-semibold); font-size: var(--text-sm); }
-.prize  { font-size: var(--text-xs); color: var(--color-text-secondary); margin-top: 2px; }
-.time   { font-size: var(--text-xs); color: var(--color-text-muted); margin-top: 2px; }
+/* ── Avatar ──────────────────────────────────────────────────── */
+.avatarWrap {
+  position: relative;
+  flex-shrink: 0;
+}
 
+.avatar {
+  width: 52px;
+  height: 52px;
+  background: linear-gradient(135deg, rgba(245,166,35,0.15), rgba(108,63,232,0.15));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  border: 1px solid var(--color-border);
+}
+
+.avatarImg {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 2px solid var(--color-border);
+}
+
+.trophyBadge {
+  position: absolute;
+  bottom: -4px;
+  right: -4px;
+  font-size: 0.8rem;
+  background: var(--color-bg-surface);
+  border-radius: 50%;
+  padding: 1px;
+}
+
+/* ── Info ────────────────────────────────────────────────────── */
+.info {
+  flex: 1;
+  min-width: 0;
+}
+
+.user {
+  font-weight: var(--fw-semibold);
+  font-size: var(--text-sm);
+  color: var(--color-text-primary);
+}
+
+.prize {
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 160px;
+}
+
+.time {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+
+/* ── Status Badge ────────────────────────────────────────────── */
+.completedBadge {
+  font-size: 10px;
+  font-weight: var(--fw-semibold);
+  padding: 3px var(--space-2);
+  border-radius: var(--radius-full);
+  background: rgba(34, 197, 94, 0.1);
+  color: var(--color-success);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ── Animation ───────────────────────────────────────────────── */
 @keyframes scroll {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }

@@ -12,6 +12,7 @@ export default function TrustSection() {
     <section className={styles.section} aria-label="Why Trust VELOOP Giveaways">
       <div className="container">
         <h2 className={styles.heading}>Why VELOOP?</h2>
+        <p className={styles.sub}>Trusted by thousands of users across India.</p>
         <div className={styles.grid}>
           {TRUST.map(({ icon, title, desc }) => (
             <div key={title} className={styles.card}>

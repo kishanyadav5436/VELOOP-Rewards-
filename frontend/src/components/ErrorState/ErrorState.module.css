@@ -1,23 +1,99 @@
+/* ============================================================
+   ErrorState — Shown when a section encounters an error
+   ============================================================ */
+
 .wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-3);
-  padding: var(--space-16) var(--space-8);
+  gap: var(--space-4);
+  padding: var(--space-20) var(--space-8);
   text-align: center;
+  animation: fadeInUp 0.5s ease-out;
 }
-.icon    { font-size: 3rem; }
-.title   { font-size: var(--text-xl); color: var(--color-error); }
-.message { font-size: var(--text-sm); color: var(--color-text-muted); }
+
+/* Decorative icon container */
+.iconBox {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pulse {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: rgba(239,68,68,0.08);
+  animation: pulseRing 2s ease-out infinite;
+}
+
+.icon {
+  font-size: 2.8rem;
+  position: relative;
+  z-index: 1;
+  animation: shake 0.5s ease-in-out;
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  font-weight: var(--fw-bold);
+  color: var(--color-error);
+}
+
+.message {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  max-width: 360px;
+  line-height: 1.7;
+}
+
 .retryBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
   margin-top: var(--space-2);
-  padding: var(--space-2) var(--space-6);
+  padding: var(--space-3) var(--space-6);
   background: var(--gradient-primary);
   color: #fff;
   border-radius: var(--radius-full);
   font-size: var(--text-sm);
   font-weight: var(--fw-semibold);
   cursor: pointer;
-  transition: opacity var(--transition-fast);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
 }
-.retryBtn:hover { opacity: 0.85; }
+.retryBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-primary);
+}
+
+.retryIcon {
+  font-size: var(--text-lg);
+  transition: transform var(--transition-base);
+}
+.retryBtn:hover .retryIcon {
+  transform: rotate(-360deg);
+}
+
+/* ── Animations ───────────────────────────────────────────── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulseRing {
+  0%   { transform: scale(0.8); opacity: 0.6; }
+  50%  { transform: scale(1.2); opacity: 0; }
+  100% { transform: scale(0.8); opacity: 0; }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%      { transform: translateX(-4px); }
+  40%      { transform: translateX(4px); }
+  60%      { transform: translateX(-3px); }
+  80%      { transform: translateX(3px); }
+}

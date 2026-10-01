@@ -13,7 +13,7 @@ const RULES = [
 
 export default function GiveawayRules() {
   return (
-    <section className={styles.section} aria-label="Giveaway Rules">
+    <section className={styles.section} id="rules" aria-label="Giveaway Rules">
       <div className="container">
         <div className={styles.box}>
           <h2 className={styles.heading}>📋 Giveaway Rules</h2>

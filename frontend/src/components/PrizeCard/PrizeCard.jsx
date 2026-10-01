@@ -18,7 +18,11 @@ export default function PrizeCard({ giveaway }) {
   return (
     <article className={styles.card} aria-label={giveaway.title}>
       <div className={styles.imageWrap}>
-        <div className={styles.imagePlaceholder}>🎁</div>
+        {giveaway.prize.image ? (
+          <img src={giveaway.prize.image} alt={giveaway.prize.name} className={styles.image} />
+        ) : (
+          <div className={styles.imagePlaceholder}>🎁</div>
+        )}
         <span className={`${styles.badge} ${styles[badge.cls]}`}>{badge.text}</span>
         {giveaway.featured && <span className={styles.featured}>⭐ Featured</span>}
       </div>

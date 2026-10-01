@@ -14,7 +14,7 @@ export default function FAQ() {
   const [open, setOpen] = useState(null)
 
   return (
-    <section className={styles.section} aria-label="Frequently Asked Questions">
+    <section className={styles.section} id="faq" aria-label="Frequently Asked Questions">
       <div className="container">
         <h2 className={styles.heading}>Frequently Asked Questions</h2>
         <div className={styles.list}>
@@ -26,7 +26,7 @@ export default function FAQ() {
                 aria-expanded={open === i}
               >
                 <span>{item.q}</span>
-                <span className={styles.chevron}>{open === i ? '−' : '+'}</span>
+                <div className={styles.chevron}>{open === i ? '−' : '+'}</div>
               </button>
               {open === i && <p className={styles.answer}>{item.a}</p>}
             </div>

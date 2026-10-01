@@ -4,7 +4,11 @@ import { timeAgo } from '../../utils/formatTime'
 export default function PreviousWinnerCard({ winner }) {
   return (
     <div className={styles.card}>
-      <div className={styles.medal}>🥇</div>
+      {winner.prizeImage ? (
+        <img src={winner.prizeImage} alt={winner.prizeName} className={styles.avatarImg} />
+      ) : (
+        <div className={styles.medal}>🥇</div>
+      )}
       <div className={styles.info}>
         <p className={styles.user}>{winner.userId}</p>
         <p className={styles.prize}>{winner.prizeName}</p>
