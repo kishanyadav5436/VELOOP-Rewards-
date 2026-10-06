@@ -109,6 +109,16 @@ npm run build
 npm run preview
 ```
 
+## Deploy to Vercel
+
+Import the repository in Vercel and set **Root Directory** to `frontend`. Vercel
+will detect Vite; use `npm run build` as the build command and `dist` as the
+output directory. The included `vercel.json` rewrites app routes to the SPA
+entry point so direct links such as `/giveaway/example` work after deployment.
+
+The current app uses mock session and giveaway data; no backend environment
+variables are required for this frontend deployment.
+
 ---
 
 ## 🏗️ Architecture Rules
