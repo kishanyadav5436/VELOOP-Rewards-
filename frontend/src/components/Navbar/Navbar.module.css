@@ -288,7 +288,217 @@
   white-space: nowrap;
 }
 
-.chevron { font-size: 0.6rem; opacity: 0.45; margin-left: 2px; }
+.profileContainer {
+  position: relative;
+}
+
+.chevron {
+  font-size: 0.6rem;
+  opacity: 0.6;
+  margin-left: 2px;
+  transition: transform var(--transition-fast);
+  display: inline-block;
+}
+
+.chevronRotated {
+  transform: rotate(180deg);
+}
+
+/* ── Profile Dropdown Menu ──────────────────────────────────── */
+.dropdownMenu {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  width: 310px;
+  background: rgba(14, 12, 28, 0.96);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-xl);
+  padding: var(--space-4);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 32px rgba(124, 77, 255, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  z-index: 300;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  animation: ddFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes ddFadeIn {
+  from { opacity: 0; transform: translateY(-8px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.dropdownHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding-bottom: var(--space-2);
+}
+
+.ddAvatarBig {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  font-weight: var(--fw-black);
+  color: #fff;
+  flex-shrink: 0;
+  box-shadow: 0 4px 14px rgba(124, 77, 255, 0.4);
+}
+
+.ddUserInfo {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.ddNameRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ddUsername {
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  font-weight: var(--fw-bold);
+  color: var(--color-text-primary);
+}
+
+.ddVerifiedTag {
+  font-size: 9px;
+  font-weight: var(--fw-bold);
+  color: #93c5fd;
+  background: rgba(59, 130, 246, 0.15);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  padding: 1px 5px;
+  border-radius: var(--radius-full);
+}
+
+.ddUserId {
+  font-size: 11px;
+  color: var(--color-accent);
+  font-weight: var(--fw-semibold);
+}
+
+.ddEmail {
+  font-size: 10px;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Dropdown Balance chips */
+.dropdownBalances {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.ddBalBadge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: var(--fw-bold);
+  color: var(--color-text-primary);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-full);
+  padding: 3px 8px;
+}
+
+.dropdownDivider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  margin: 2px 0;
+}
+
+/* Dropdown Links */
+.dropdownLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 8px 10px;
+  border-radius: var(--radius-md);
+  background: none;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  transition: all var(--transition-fast);
+}
+.dropdownItem:hover {
+  background: rgba(124, 77, 255, 0.14);
+  transform: translateX(3px);
+}
+
+.ddItemIcon {
+  font-size: 1.15rem;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.04);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ddItemText {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.ddItemTitle {
+  font-size: var(--text-xs);
+  font-weight: var(--fw-bold);
+  color: var(--color-text-primary);
+}
+
+.ddItemSub {
+  font-size: 10px;
+  color: var(--color-text-muted);
+}
+
+.ddArrow {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  opacity: 0.6;
+}
+
+.dropdownLogoutBtn {
+  width: 100%;
+  padding: 8px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  border-radius: var(--radius-md);
+  color: #ff6b7a;
+  font-size: var(--text-xs);
+  font-weight: var(--fw-bold);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-align: center;
+}
+.dropdownLogoutBtn:hover {
+  background: rgba(239, 68, 68, 0.2);
+  color: #fff;
+  border-color: rgba(239, 68, 68, 0.45);
+}
 
 /* ── Hamburger ─────────────────────────────────────────────── */
 .hamburger {
@@ -382,6 +592,32 @@
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-full);
+}
+
+.mobileQuickActions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+  padding-top: var(--space-2);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.mobileActionBtn {
+  padding: 9px 12px;
+  background: rgba(124, 77, 255, 0.1);
+  border: 1px solid rgba(124, 77, 255, 0.25);
+  border-radius: var(--radius-md);
+  color: var(--color-primary-light);
+  font-size: var(--text-xs);
+  font-weight: var(--fw-semibold);
+  cursor: pointer;
+  text-align: left;
+  transition: all var(--transition-fast);
+}
+.mobileActionBtn:hover {
+  background: rgba(124, 77, 255, 0.2);
+  color: #fff;
 }
 
 .mobileBtnLogin {

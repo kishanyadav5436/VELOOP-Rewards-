@@ -5,6 +5,14 @@ import { formatCurrency } from '../../utils/formatTime'
 
 export default function GiveawayHero() {
   const canvasRef = useRef(null)
+  const [parallax, setParallax] = useState({ x: 0, y: 0 })
+
+  function handleMouseMove(e) {
+    const rect = e.currentTarget.getBoundingClientRect()
+    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2
+    const y = ((e.clientY - rect.top) / rect.height - 0.5) * 2
+    setParallax({ x, y })
+  }
 
   // Animated sparkle particles
   useEffect(() => {
@@ -59,7 +67,11 @@ export default function GiveawayHero() {
     .slice(0, 3)
 
   return (
-    <section className={styles.hero} aria-label="VELOOP Giveaways Hero">
+    <section
+      className={styles.hero}
+      aria-label="VELOOP Giveaways Hero"
+      onMouseMove={handleMouseMove}
+    >
       {/* Background layers */}
       <div className={styles.bg}>
         <div className={styles.orb1} />
@@ -69,9 +81,12 @@ export default function GiveawayHero() {
         <canvas ref={canvasRef} className={styles.particles} />
       </div>
 
-      {/* Floating Currency & Achievement Badges (Ambient Web3 Atmosphere) */}
+      {/* Floating Currency & Achievement Badges (Interactive Parallax Micro-Interactions) */}
       <div className={styles.floatingAtmosphere} aria-hidden="true">
-        <div className={`${styles.floatingCard} ${styles.floatCard1}`}>
+        <div
+          className={`${styles.floatingCard} ${styles.floatCard1}`}
+          style={{ transform: `translate3d(${parallax.x * -20}px, ${parallax.y * -15}px, 0)` }}
+        >
           <div className={styles.floatIconWrap}>💎</div>
           <div className={styles.floatInfo}>
             <span className={styles.floatValue}>+500 VEs</span>
@@ -80,7 +95,10 @@ export default function GiveawayHero() {
           <span className={styles.floatSparkle}>✨</span>
         </div>
 
-        <div className={`${styles.floatingCard} ${styles.floatCard2}`}>
+        <div
+          className={`${styles.floatingCard} ${styles.floatCard2}`}
+          style={{ transform: `translate3d(${parallax.x * 18}px, ${parallax.y * -14}px, 0)` }}
+        >
           <div className={`${styles.floatIconWrap} ${styles.iconGold}`}>⚡</div>
           <div className={styles.floatInfo}>
             <span className={styles.floatValue}>1,500 SVEs</span>
@@ -88,7 +106,10 @@ export default function GiveawayHero() {
           </div>
         </div>
 
-        <div className={`${styles.floatingCard} ${styles.floatCard3}`}>
+        <div
+          className={`${styles.floatingCard} ${styles.floatCard3}`}
+          style={{ transform: `translate3d(${parallax.x * -16}px, ${parallax.y * 18}px, 0)` }}
+        >
           <div className={`${styles.floatIconWrap} ${styles.iconGreen}`}>🪙</div>
           <div className={styles.floatInfo}>
             <span className={styles.floatValue}>420 Tokens</span>
@@ -96,7 +117,10 @@ export default function GiveawayHero() {
           </div>
         </div>
 
-        <div className={`${styles.floatingCard} ${styles.floatCard4}`}>
+        <div
+          className={`${styles.floatingCard} ${styles.floatCard4}`}
+          style={{ transform: `translate3d(${parallax.x * 22}px, ${parallax.y * 20}px, 0)` }}
+        >
           <div className={styles.floatAvatar}>🏆</div>
           <div className={styles.floatInfo}>
             <div className={styles.floatUserRow}>
@@ -105,6 +129,27 @@ export default function GiveawayHero() {
             </div>
             <span className={styles.floatLabel}>Won PS5 • Verified</span>
           </div>
+        </div>
+
+        {/* Recent Reward Claim Badge */}
+        <div
+          className={`${styles.floatingCard} ${styles.floatCard5}`}
+          style={{ transform: `translate3d(${parallax.x * 15}px, ${parallax.y * -22}px, 0)` }}
+        >
+          <div className={`${styles.floatIconWrap} ${styles.iconOrange}`}>🎁</div>
+          <div className={styles.floatInfo}>
+            <span className={styles.floatValue}>Claimed ₹10k Voucher</span>
+            <span className={styles.floatLabel}>VE****55 • 3m ago</span>
+          </div>
+        </div>
+
+        {/* Live Community Activity Pill */}
+        <div
+          className={`${styles.floatingCard} ${styles.floatCard6}`}
+          style={{ transform: `translate3d(${parallax.x * -24}px, ${parallax.y * 14}px, 0)` }}
+        >
+          <span className={styles.claimDot} />
+          <span className={styles.floatClaimText}>🔥 47+ Prizes Claimed This Month</span>
         </div>
       </div>
 

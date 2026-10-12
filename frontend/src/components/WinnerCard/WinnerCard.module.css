@@ -14,11 +14,13 @@
   );
   border: 1px solid rgba(245, 166, 35, 0.2);
   border-radius: var(--radius-lg);
-  transition: border-color var(--transition-fast), transform var(--transition-fast);
+  transition: border-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+  cursor: pointer;
 }
 .card:hover {
-  border-color: rgba(245, 166, 35, 0.4);
-  transform: translateY(-2px);
+  border-color: rgba(245, 166, 35, 0.5);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(245, 166, 35, 0.15);
 }
 
 .trophy {

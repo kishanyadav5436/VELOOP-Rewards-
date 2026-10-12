@@ -67,10 +67,11 @@
   font-family: var(--font-heading);
   font-size: var(--text-2xl);
   font-weight: var(--fw-black);
-  color: var(--color-text-primary);
+  color: #fff;
   font-variant-numeric: tabular-nums;
   letter-spacing: -0.02em;
   line-height: 1;
+  text-shadow: 0 0 10px rgba(124, 77, 255, 0.4);
 }
 
 .name {

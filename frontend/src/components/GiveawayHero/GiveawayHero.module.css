@@ -440,6 +440,38 @@
   border-color: rgba(255, 176, 32, 0.3);
 }
 
+.floatCard5 {
+  top: 48%;
+  right: 2.5%;
+  animation: floatCardAnim1 8.5s ease-in-out infinite 2s;
+  border-color: rgba(255, 107, 107, 0.3);
+}
+
+.floatCard6 {
+  bottom: 8%;
+  left: 6%;
+  animation: floatCardAnim3 8s ease-in-out infinite 2.5s;
+  border-color: rgba(124, 77, 255, 0.3);
+  padding: 8px 14px;
+}
+
+.claimDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ff4757;
+  box-shadow: 0 0 8px #ff4757;
+  animation: pulse 1.8s infinite ease-in-out;
+  flex-shrink: 0;
+}
+
+.floatClaimText {
+  font-size: 11px;
+  font-weight: var(--fw-bold);
+  color: var(--color-text-primary);
+  letter-spacing: 0.02em;
+}
+
 .floatIconWrap {
   width: 36px;
   height: 36px;
@@ -464,6 +496,12 @@
   background: rgba(34, 197, 94, 0.16);
   border-color: rgba(34, 197, 94, 0.35);
   box-shadow: 0 4px 12px rgba(34, 197, 94, 0.25);
+}
+
+.iconOrange {
+  background: rgba(255, 107, 107, 0.16);
+  border-color: rgba(255, 107, 107, 0.35);
+  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.25);
 }
 
 .floatAvatar {

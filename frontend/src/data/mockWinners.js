@@ -1,6 +1,7 @@
 /**
  * mockWinners.js
- * Past & recent winners — displayed in WinnerSlider / WinnerCard
+ * Past & recent winners — displayed in WinnerSlider / WinnerCard / WinnersTabs
+ * Enhanced with Verifiably Fair Draw Hashes and On-Chain Proof Metadata.
  */
 
 export const recentWinners = [
@@ -13,6 +14,15 @@ export const recentWinners = [
     userId:        'VE****42',
     wonAt:         '2026-09-01T18:32:00.000Z',
     claimStatus:   'completed',
+    proof: {
+      drawHash:       '0x8f4c81a293f0b83e01bc89452bde0174a72d3851b9e02c679a831ef58c4921b7',
+      blockNumber:    '19,842,910',
+      vrfSeed:        'vrf-seed-ps5-9842',
+      algorithm:      'Chainlink VRF v2 / SHA-256',
+      verifiedStatus: '100% On-Chain Confirmed',
+      txTimestamp:    'Sep 01, 2026 18:32:14 UTC',
+      explorerUrl:    'https://etherscan.io/tx/0x8f4c81a293f0b83e01bc89452bde0174a72d3851b9e02c679a831ef58c4921b7',
+    },
   },
   {
     id:            'win-002',
@@ -23,6 +33,15 @@ export const recentWinners = [
     userId:        'VE****17',
     wonAt:         '2026-08-15T18:30:00.000Z',
     claimStatus:   'completed',
+    proof: {
+      drawHash:       '0x3d7b901a54f1c79e62ad78341fe20893b16c8742a9b34c518d623ea7104f9812',
+      blockNumber:    '19,720,114',
+      vrfSeed:        'vrf-seed-s25-1744',
+      algorithm:      'Chainlink VRF v2 / SHA-256',
+      verifiedStatus: '100% On-Chain Confirmed',
+      txTimestamp:    'Aug 15, 2026 18:30:22 UTC',
+      explorerUrl:    'https://etherscan.io/tx/0x3d7b901a54f1c79e62ad78341fe20893b16c8742a9b34c518d623ea7104f9812',
+    },
   },
   {
     id:            'win-003',
@@ -33,6 +52,15 @@ export const recentWinners = [
     userId:        'VE****88',
     wonAt:         '2026-08-01T18:30:00.000Z',
     claimStatus:   'completed',
+    proof: {
+      drawHash:       '0xaa4291f09c2184e5b883017a4c9b3e102f9188435d720a4b81c2e73f9821a045',
+      blockNumber:    '19,598,332',
+      vrfSeed:        'vrf-seed-flipkart-8801',
+      algorithm:      'Chainlink VRF v2 / SHA-256',
+      verifiedStatus: '100% On-Chain Confirmed',
+      txTimestamp:    'Aug 01, 2026 18:30:05 UTC',
+      explorerUrl:    'https://etherscan.io/tx/0xaa4291f09c2184e5b883017a4c9b3e102f9188435d720a4b81c2e73f9821a045',
+    },
   },
   {
     id:            'win-004',
@@ -43,6 +71,15 @@ export const recentWinners = [
     userId:        'VE****55',
     wonAt:         '2026-07-15T18:30:00.000Z',
     claimStatus:   'completed',
+    proof: {
+      drawHash:       '0x6c91a03e7f22b9183401c45689da3b107e542893f0b217a489c72e104f918820',
+      blockNumber:    '19,481,209',
+      vrfSeed:        'vrf-seed-amazon-5520',
+      algorithm:      'Chainlink VRF v2 / SHA-256',
+      verifiedStatus: '100% On-Chain Confirmed',
+      txTimestamp:    'Jul 15, 2026 18:30:41 UTC',
+      explorerUrl:    'https://etherscan.io/tx/0x6c91a03e7f22b9183401c45689da3b107e542893f0b217a489c72e104f918820',
+    },
   },
   {
     id:            'win-005',
@@ -53,5 +90,14 @@ export const recentWinners = [
     userId:        'VE****31',
     wonAt:         '2026-07-01T18:30:00.000Z',
     claimStatus:   'completed',
+    proof: {
+      drawHash:       '0x19f4a81093bc2718e401b97582ae1047c394102958d203a1b8734e509c2184e5',
+      blockNumber:    '19,360,540',
+      vrfSeed:        'vrf-seed-macbook-3109',
+      algorithm:      'Chainlink VRF v2 / SHA-256',
+      verifiedStatus: '100% On-Chain Confirmed',
+      txTimestamp:    'Jul 01, 2026 18:30:19 UTC',
+      explorerUrl:    'https://etherscan.io/tx/0x19f4a81093bc2718e401b97582ae1047c394102958d203a1b8734e509c2184e5',
+    },
   },
 ]

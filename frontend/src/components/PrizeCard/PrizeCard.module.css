@@ -29,9 +29,9 @@
 }
 
 .card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.75), 0 0 35px rgba(124, 77, 255, 0.32), 0 0 0 1px rgba(124, 77, 255, 0.45);
-  border-color: rgba(124, 77, 255, 0.5);
+  transform: translateY(-10px) scale(1.015);
+  box-shadow: 0 28px 72px rgba(0, 0, 0, 0.8), 0 0 40px rgba(124, 77, 255, 0.38), 0 0 0 1px rgba(124, 77, 255, 0.55);
+  border-color: rgba(124, 77, 255, 0.65);
 }
 .card:hover::before { opacity: 1; }
 
@@ -42,8 +42,9 @@
   box-shadow: var(--shadow-card), 0 0 30px rgba(255, 176, 32, 0.08);
 }
 .card.cardFeatured:hover {
-  border-color: rgba(255, 176, 32, 0.55);
-  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.75), 0 0 45px rgba(255, 176, 32, 0.32), 0 0 0 1px rgba(255, 176, 32, 0.5);
+  transform: translateY(-10px) scale(1.015);
+  border-color: rgba(255, 176, 32, 0.75);
+  box-shadow: 0 28px 72px rgba(0, 0, 0, 0.8), 0 0 50px rgba(255, 176, 32, 0.45), 0 0 0 1px rgba(255, 176, 32, 0.65);
 }
 .card.cardFeatured::before {
   background: var(--gradient-featured);
@@ -239,6 +240,59 @@
   padding: 2px 10px;
   border-radius: var(--radius-full);
   border: 1px solid rgba(124,77,255,0.2);
+}
+
+/* ── Visual Entry Progress Bar ────────────────────────────── */
+.progressSection {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+}
+
+.progressHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.progressLabel {
+  font-size: 11px;
+  font-weight: var(--fw-bold);
+  color: var(--color-primary-light);
+  letter-spacing: 0.02em;
+}
+
+.progressValue {
+  font-size: 11px;
+  color: var(--color-text-muted);
+}
+.progressValue strong {
+  color: var(--color-text-primary);
+}
+
+.progressBarTrack {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  position: relative;
+}
+
+.progressBarFill {
+  height: 100%;
+  background: linear-gradient(90deg, #7C4DFF 0%, #a855f7 60%, #ec4899 100%);
+  border-radius: var(--radius-full);
+  box-shadow: 0 0 10px rgba(124, 77, 255, 0.6);
+  transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.progressHot {
+  background: linear-gradient(90deg, #f59e0b 0%, #ef4444 100%);
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.8);
 }
 
 /* ── Countdown ────────────────────────────────────────────── */

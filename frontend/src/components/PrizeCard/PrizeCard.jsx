@@ -57,6 +57,37 @@ export default function PrizeCard({ giveaway }) {
           </span>
         </div>
 
+        {/* Visual Entry Progress Bar */}
+        {status === GIVEAWAY_STATUS.ACTIVE && giveaway.stats.maxParticipants > 0 && (
+          <div className={styles.progressSection} aria-label="Entry slots progress">
+            <div className={styles.progressHeader}>
+              <span className={styles.progressLabel}>
+                {Math.round((giveaway.stats.totalParticipants / giveaway.stats.maxParticipants) * 100) >= 90
+                  ? '🔥 Almost Full'
+                  : '⚡ Entry Slots'}
+              </span>
+              <span className={styles.progressValue}>
+                <strong>
+                  {Math.round((giveaway.stats.totalParticipants / giveaway.stats.maxParticipants) * 100)}%
+                </strong>{' '}
+                ({(giveaway.stats.maxParticipants - giveaway.stats.totalParticipants).toLocaleString()} left)
+              </span>
+            </div>
+            <div className={styles.progressBarTrack}>
+              <div
+                className={`${styles.progressBarFill} ${
+                  Math.round((giveaway.stats.totalParticipants / giveaway.stats.maxParticipants) * 100) >= 90
+                    ? styles.progressHot
+                    : ''
+                }`}
+                style={{
+                  width: `${Math.min(100, Math.round((giveaway.stats.totalParticipants / giveaway.stats.maxParticipants) * 100))}%`,
+                }}
+              />
+            </div>
+          </div>
+        )}
+
         {status === GIVEAWAY_STATUS.ACTIVE && (
           <div className={styles.countdown}>
             <Countdown endDate={giveaway.endDate} label="Ends in" />
