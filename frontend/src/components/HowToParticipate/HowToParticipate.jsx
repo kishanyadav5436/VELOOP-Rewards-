@@ -13,8 +13,9 @@ export default function HowToParticipate() {
     <section className={styles.section} id="how-to" aria-label="How to Participate">
       <div className="container">
         <div className={styles.header}>
+          <div className={styles.eyebrow}>🚀 Simple Process</div>
           <h2 className={styles.heading}>How to Participate</h2>
-          <p className={styles.sub}>It's simple. Earn → Enter → Win.</p>
+          <p className={styles.sub}>It&apos;s simple. Earn → Enter → Win.</p>
         </div>
         <div className={styles.steps}>
           {STEPS.map((step, i) => (

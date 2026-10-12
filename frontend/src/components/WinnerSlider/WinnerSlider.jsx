@@ -19,8 +19,9 @@ export default function WinnerSlider() {
     <section className={styles.section} aria-label="Recent Winners">
       <div className="container">
         <div className={styles.header}>
-          <h2 className={styles.heading}>🏆 Recent Winners</h2>
-          <p className={styles.sub}>Real people. Real prizes. Every month.</p>
+          <div className={styles.eyebrow}>🏆 Hall of Winners</div>
+          <h2 className={styles.heading}>Recent Winners</h2>
+          <p className={styles.sub}>Real people. Real prizes. 100% verified outcomes every month.</p>
         </div>
       </div>
 
@@ -46,13 +47,21 @@ export default function WinnerSlider() {
                   <span className={styles.trophyBadge}>🏆</span>
                 </div>
                 <div className={styles.info}>
-                  <p className={styles.user}>{w.userId}</p>
+                  <div className={styles.userRow}>
+                    <span className={styles.user}>{w.userId}</span>
+                    <span className={styles.verifiedBadge} title="Verified Winner">
+                      <span className={styles.checkIcon}>✓</span>
+                      <span className={styles.verifiedText}>Verified</span>
+                    </span>
+                  </div>
                   <p className={styles.prize}>{w.prizeName}</p>
-                  <p className={styles.time}>{timeAgo(w.wonAt)}</p>
+                  <div className={styles.metaRow}>
+                    <span className={styles.timeBadge}>⏱️ {timeAgo(w.wonAt)}</span>
+                    <span className={styles.completedBadge}>
+                      {w.claimStatus === 'completed' ? '✅ Claimed' : '⏳ Pending'}
+                    </span>
+                  </div>
                 </div>
-                <span className={styles.completedBadge}>
-                  {w.claimStatus === 'completed' ? '✅ Claimed' : '⏳ Pending'}
-                </span>
               </div>
             ))}
           </div>

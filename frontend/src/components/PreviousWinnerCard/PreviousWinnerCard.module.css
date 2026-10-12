@@ -1,5 +1,5 @@
 /* ============================================================
-   PreviousWinnerCard
+   PreviousWinnerCard — Modern Achievement Style
    ============================================================ */
 
 .card {
@@ -7,14 +7,19 @@
   align-items: center;
   gap: var(--space-4);
   padding: var(--space-4) var(--space-5);
-  background: var(--gradient-card);
-  border: 1px solid var(--color-border);
+  background: rgba(16, 14, 30, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius-lg);
-  transition: border-color var(--transition-fast), transform var(--transition-fast);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transition: all var(--transition-fast);
 }
+
 .card:hover {
-  border-color: var(--color-primary);
-  transform: translateY(-2px);
+  border-color: rgba(124, 77, 255, 0.45);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(124, 77, 255, 0.15);
 }
 
 .medal {
@@ -28,7 +33,8 @@
   border-radius: var(--radius-md);
   object-fit: cover;
   flex-shrink: 0;
-  border: 1px solid var(--color-border);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #141426;
 }
 
 .info {
@@ -36,17 +42,57 @@
   min-width: 0;
 }
 
+.userRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
 .user {
-  font-weight: var(--fw-semibold);
+  font-family: var(--font-heading);
+  font-weight: var(--fw-bold);
   font-size: var(--text-sm);
   color: var(--color-primary-light);
+  letter-spacing: 0.01em;
+}
+
+.verifiedBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 1px 6px;
+  background: rgba(59, 130, 246, 0.14);
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  border-radius: var(--radius-full);
+}
+
+.checkIcon {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #3b82f6;
+  color: #fff;
+  font-size: 7px;
+  font-weight: 900;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.verifiedText {
+  font-size: 9px;
+  font-weight: var(--fw-bold);
+  color: #93c5fd;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .prize {
   font-size: var(--text-sm);
   color: var(--color-text-primary);
   font-weight: var(--fw-medium);
-  margin-top: 2px;
+  margin-top: 3px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -61,9 +107,14 @@
   text-overflow: ellipsis;
 }
 
-.time {
-  font-size: var(--text-xs);
+.timeBadge {
+  display: inline-block;
+  font-size: 10px;
   color: var(--color-text-muted);
-  opacity: 0.7;
-  margin-top: 2px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  padding: 1px 6px;
+  border-radius: var(--radius-full);
+  margin-top: 4px;
+  font-variant-numeric: tabular-nums;
 }

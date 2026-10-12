@@ -16,7 +16,10 @@ export default function FAQ() {
   return (
     <section className={styles.section} id="faq" aria-label="Frequently Asked Questions">
       <div className="container">
-        <h2 className={styles.heading}>Frequently Asked Questions</h2>
+        <div className={styles.headerWrap}>
+          <div className={styles.eyebrow}>❓ FAQ</div>
+          <h2 className={styles.heading}>Frequently Asked Questions</h2>
+        </div>
         <div className={styles.list}>
           {FAQS.map((item, i) => (
             <div key={i} className={`${styles.item} ${open === i ? styles.opened : ''}`}>

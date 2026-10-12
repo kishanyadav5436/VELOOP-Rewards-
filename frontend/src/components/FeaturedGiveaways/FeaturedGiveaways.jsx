@@ -13,8 +13,11 @@ export default function FeaturedGiveaways() {
     <section className={styles.section} id="giveaways" aria-label="All Giveaways">
       <div className="container">
         <div className={styles.header}>
-          <h2 className={styles.heading}>Active Giveaways</h2>
-          <p className={styles.sub}>Enter using your VEs, SVEs, or Tokens</p>
+          <div className={styles.eyebrow}>🎁 Live Giveaways</div>
+          <h2 className={styles.heading}>
+            <span className={styles.headingAccent}>Active</span> Giveaways
+          </h2>
+          <p className={styles.sub}>Enter using your VEs, SVEs, or Tokens and win real prizes</p>
         </div>
 
         {loading && (

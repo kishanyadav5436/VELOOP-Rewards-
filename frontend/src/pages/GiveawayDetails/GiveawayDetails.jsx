@@ -51,9 +51,9 @@ export default function GiveawayDetails() {
   if (!giveaway) return null
 
   const STATUS_CONFIG = {
-    [GIVEAWAY_STATUS.ACTIVE]:   { label: '🔴 Live',     cls: styles.badgeActive },
-    [GIVEAWAY_STATUS.UPCOMING]: { label: '🔵 Upcoming', cls: styles.badgeUpcoming },
-    [GIVEAWAY_STATUS.ENDED]:    { label: '⚫ Ended',    cls: styles.badgeEnded },
+    [GIVEAWAY_STATUS.ACTIVE]:   { label: 'Live Now',  cls: styles.badgeActive },
+    [GIVEAWAY_STATUS.UPCOMING]: { label: 'Upcoming',  cls: styles.badgeUpcoming },
+    [GIVEAWAY_STATUS.ENDED]:    { label: 'Ended',     cls: styles.badgeEnded },
   }
   const badge = STATUS_CONFIG[status] ?? STATUS_CONFIG[GIVEAWAY_STATUS.ENDED]
 
@@ -83,7 +83,17 @@ export default function GiveawayDetails() {
                 ) : (
                   <span className={styles.emoji} role="img" aria-label="Prize">🎁</span>
                 )}
-                <span className={`${styles.badge} ${badge.cls}`}>{badge.label}</span>
+                <span className={`${styles.badge} ${badge.cls}`}>
+                  {status === GIVEAWAY_STATUS.ACTIVE && (
+                    <span className={styles.badgePingWrap}>
+                      <span className={styles.badgePing} />
+                      <span className={styles.badgeDot} />
+                    </span>
+                  )}
+                  {status === GIVEAWAY_STATUS.UPCOMING && <span>⏳</span>}
+                  {status === GIVEAWAY_STATUS.ENDED && <span>🏁</span>}
+                  {badge.label}
+                </span>
                 {giveaway.featured && (
                   <span className={styles.featuredBadge}>⭐ Featured</span>
                 )}

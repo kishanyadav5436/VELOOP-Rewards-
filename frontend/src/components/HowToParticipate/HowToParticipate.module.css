@@ -1,20 +1,52 @@
 /* ============================================================
-   HowToParticipate — Step-by-Step Timeline
+   HowToParticipate — Step-by-Step Timeline (Premium Refresh)
    ============================================================ */
 
 .section {
-  padding: var(--space-16) 0;
+  padding: var(--space-20) 0;
+  position: relative;
 }
 
+.section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(124,77,255,0.35), transparent);
+}
+
+/* ── Header ──────────────────────────────────────────────── */
 .header {
   text-align: center;
-  margin-bottom: var(--space-12);
+  margin-bottom: var(--space-16);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-primary-light);
+  margin-bottom: var(--space-4);
+  padding: 4px var(--space-4);
+  background: rgba(124,77,255,0.1);
+  border: 1px solid rgba(124,77,255,0.2);
+  border-radius: var(--radius-full);
 }
 
 .heading {
   font-family: var(--font-heading);
-  font-size: var(--text-4xl);
-  font-weight: var(--fw-extrabold);
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: var(--fw-black);
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  margin-bottom: var(--space-3);
   background: var(--gradient-primary);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -22,17 +54,17 @@
 }
 
 .sub {
-  color: var(--color-text-muted);
+  color: var(--color-text-secondary);
   font-size: var(--text-base);
-  margin-top: var(--space-2);
+  line-height: 1.7;
 }
 
-/* ── Steps Timeline ──────────────────────────────────────────── */
+/* ── Steps Timeline ──────────────────────────────────────── */
 .steps {
   display: flex;
   flex-direction: column;
   gap: 0;
-  max-width: 680px;
+  max-width: 700px;
   margin: 0 auto;
 }
 
@@ -52,24 +84,25 @@
 }
 
 .icon {
-  width: 56px;
-  height: 56px;
+  width: 58px;
+  height: 58px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.6rem;
   background: var(--gradient-card);
-  border: 2px solid rgba(108, 63, 232, 0.3);
+  border: 1px solid rgba(124,77,255,0.28);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-primary);
+  box-shadow: 0 4px 24px rgba(124,77,255,0.20), var(--shadow-md);
   z-index: 1;
   position: relative;
-  transition: border-color var(--transition-fast), transform var(--transition-fast);
+  transition: border-color var(--transition-base), transform var(--transition-base), box-shadow var(--transition-base);
 }
 
 .step:hover .icon {
-  border-color: var(--color-primary);
-  transform: scale(1.05);
+  border-color: rgba(124,77,255,0.55);
+  transform: scale(1.08);
+  box-shadow: 0 8px 32px rgba(124,77,255,0.35), var(--shadow-lg);
 }
 
 .num {
@@ -77,26 +110,28 @@
   color: var(--color-primary-light);
   font-weight: var(--fw-bold);
   margin-top: var(--space-2);
-  opacity: 0.7;
+  opacity: 0.6;
+  letter-spacing: 0.05em;
 }
 
-/* Connecting line between steps */
+/* Connecting line */
 .connector {
   width: 2px;
   flex: 1;
   background: linear-gradient(
     to bottom,
-    rgba(108, 63, 232, 0.4),
-    rgba(108, 63, 232, 0.1)
+    rgba(124,77,255,0.5),
+    rgba(124,77,255,0.08)
   );
   margin: var(--space-1) auto;
-  min-height: 24px;
+  min-height: 28px;
   border-radius: 2px;
 }
 
 /* Right: Content */
 .content {
-  padding: 0 0 var(--space-8) var(--space-2);
+  padding: 4px 0 var(--space-8) var(--space-2);
+  flex: 1;
 }
 
 .title {
@@ -105,17 +140,19 @@
   font-size: var(--text-lg);
   margin-bottom: var(--space-2);
   color: var(--color-text-primary);
+  letter-spacing: -0.01em;
 }
 
 .desc {
   color: var(--color-text-secondary);
   font-size: var(--text-sm);
-  line-height: 1.75;
+  line-height: 1.8;
 }
 
-/* ── Responsive ─────────────────────────────────────────────── */
+/* ── Responsive ──────────────────────────────────────────── */
 @media (max-width: 640px) {
-  .icon { width: 46px; height: 46px; font-size: 1.2rem; }
+  .icon { width: 48px; height: 48px; font-size: 1.25rem; }
   .step { gap: var(--space-4); }
   .content { padding-bottom: var(--space-6); }
+  .heading { font-size: 1.8rem; }
 }

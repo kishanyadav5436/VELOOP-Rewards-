@@ -30,7 +30,9 @@ export default function Navbar() {
       <div className={styles.inner}>
         {/* Logo */}
         <Link to="/" className={styles.logo} aria-label="VELOOP Rewards Home">
-          <span className={styles.logoIcon}>🎁</span>
+          <div className={styles.logoIconWrap}>
+            <span className={styles.logoIcon}>🎁</span>
+          </div>
           <span className={styles.logoText}>
             VELOOP <span className={styles.logoAccent}>Rewards</span>
           </span>
@@ -51,13 +53,27 @@ export default function Navbar() {
         {/* Right side: Balances + Auth */}
         <div className={styles.right}>
           {isLoggedIn && (
-            <div className={styles.balances} aria-label="Your balances">
-              {Object.entries(balances).map(([currency, amount]) => (
-                <div key={currency} className={styles.balanceChip}>
-                  <span className={styles.balanceAmt}>{amount.toLocaleString()}</span>
-                  <span className={styles.balanceCur}>{currency}</span>
-                </div>
-              ))}
+            <div className={styles.balanceArea}>
+              <div className={styles.balances} aria-label="Your balances">
+                {Object.entries(balances).map(([currency, amount]) => {
+                  const icon = currency === 'VEs' ? '💎' : currency === 'SVEs' ? '⚡' : '🪙'
+                  return (
+                    <div key={currency} className={`${styles.balanceChip} ${styles[`cur_${currency}`]}`}>
+                      <span className={styles.curIcon}>{icon}</span>
+                      <span className={styles.balanceAmt}>{amount.toLocaleString()}</span>
+                      <span className={styles.balanceCur}>{currency}</span>
+                    </div>
+                  )
+                })}
+              </div>
+              <a
+                href="#how-to"
+                className={styles.quickEarnBtn}
+                title="Earn more VEs and Tokens"
+              >
+                <span className={styles.quickEarnIcon}>+</span>
+                <span>Earn</span>
+              </a>
             </div>
           )}
 
@@ -101,13 +117,29 @@ export default function Navbar() {
           <a href="/#stats"  className={styles.mobileLink} onClick={() => setMenuOpen(false)}>Stats</a>
 
           {isLoggedIn && (
-            <div className={styles.mobileBalances}>
-              {Object.entries(balances).map(([currency, amount]) => (
-                <div key={currency} className={styles.mobileBalance}>
-                  <span>{amount.toLocaleString()}</span>
-                  <span className={styles.balanceCur}>{currency}</span>
-                </div>
-              ))}
+            <div className={styles.mobileBalanceSection}>
+              <div className={styles.mobileBalanceHeader}>
+                <span className={styles.mobileBalanceTitle}>Your Wallet</span>
+                <a
+                  href="#how-to"
+                  className={styles.mobileQuickEarn}
+                  onClick={() => setMenuOpen(false)}
+                >
+                  ⚡ + Quick Earn
+                </a>
+              </div>
+              <div className={styles.mobileBalances}>
+                {Object.entries(balances).map(([currency, amount]) => {
+                  const icon = currency === 'VEs' ? '💎' : currency === 'SVEs' ? '⚡' : '🪙'
+                  return (
+                    <div key={currency} className={`${styles.mobileBalance} ${styles[`cur_${currency}`]}`}>
+                      <span>{icon}</span>
+                      <span className={styles.balanceAmt}>{amount.toLocaleString()}</span>
+                      <span className={styles.balanceCur}>{currency}</span>
+                    </div>
+                  )
+                })}
+              </div>
             </div>
           )}
 

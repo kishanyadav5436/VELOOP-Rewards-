@@ -40,11 +40,49 @@
   min-width: 0;
 }
 
+.userRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
 .user {
   font-weight: var(--fw-bold);
   font-size: var(--text-base);
   color: var(--color-accent);
   font-family: var(--font-heading);
+}
+
+.verifiedBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 1px 6px;
+  background: rgba(59, 130, 246, 0.15);
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  border-radius: var(--radius-full);
+}
+
+.checkIcon {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #3b82f6;
+  color: #fff;
+  font-size: 7px;
+  font-weight: 900;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.verifiedText {
+  font-size: 9px;
+  font-weight: var(--fw-bold);
+  color: #93c5fd;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .prize {

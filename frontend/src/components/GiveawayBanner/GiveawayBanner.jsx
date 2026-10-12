@@ -20,7 +20,10 @@ export default function GiveawayBanner() {
         {/* Left: Info */}
         <div className={styles.left}>
           <div className={styles.liveWrap}>
-            <span className={styles.liveDot} />
+            <span className={styles.liveDotWrap}>
+              <span className={styles.liveDotPing} />
+              <span className={styles.liveDot} />
+            </span>
             <span className={styles.liveTag}>LIVE NOW</span>
           </div>
           <h2 className={styles.title}>{featured.title}</h2>

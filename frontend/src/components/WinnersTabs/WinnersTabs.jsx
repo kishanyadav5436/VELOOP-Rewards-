@@ -15,7 +15,11 @@ export default function WinnersTabs() {
   return (
     <section className={styles.section} aria-label="Giveaway Winners">
       <div className="container">
-        <h2 className={styles.heading}>Winners</h2>
+        <div className={styles.header}>
+          <div className={styles.eyebrow}>🏅 Winner History</div>
+          <h2 className={styles.heading}>Winners Directory</h2>
+          <p className={styles.sub}>Check active and previous giveaway distributions</p>
+        </div>
 
         <div className={styles.tabs} role="tablist">
           <button

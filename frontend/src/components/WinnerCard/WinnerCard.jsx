@@ -10,11 +10,17 @@ export default function WinnerCard({ giveaway, winner }) {
         <div className={styles.trophy}>🏆</div>
       )}
       <div className={styles.info}>
-        <p className={styles.user}>{winner.userId}</p>
+        <div className={styles.userRow}>
+          <p className={styles.user}>{winner.userId}</p>
+          <span className={styles.verifiedBadge} title="Verified Winner">
+            <span className={styles.checkIcon}>✓</span>
+            <span className={styles.verifiedText}>Verified</span>
+          </span>
+        </div>
         <p className={styles.prize}>{giveaway.prize.name}</p>
         <p className={styles.time}>Won: {formatDateTime(winner.claimedAt)}</p>
         <span className={`${styles.status} ${styles[winner.claimStatus]}`}>
-          {winner.claimStatus}
+          {winner.claimStatus === 'completed' ? '✅ Claimed' : winner.claimStatus}
         </span>
       </div>
     </div>

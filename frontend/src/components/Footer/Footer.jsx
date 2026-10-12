@@ -28,7 +28,9 @@ export default function Footer() {
             {/* Brand */}
             <div className={styles.brand}>
               <Link to="/" className={styles.logo} aria-label="VELOOP Rewards Home">
-                <span className={styles.logoIcon}>🎁</span>
+                <div className={styles.logoIconWrap}>
+                  <span className={styles.logoIcon}>🎁</span>
+                </div>
                 <span className={styles.logoText}>
                   VELOOP <span className={styles.logoAccent}>Rewards</span>
                 </span>

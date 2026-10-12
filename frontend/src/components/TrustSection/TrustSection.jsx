@@ -11,6 +11,7 @@ export default function TrustSection() {
   return (
     <section className={styles.section} aria-label="Why Trust VELOOP Giveaways">
       <div className="container">
+        <div className={styles.eyebrow}>🛡️ Why Choose Us</div>
         <h2 className={styles.heading}>Why VELOOP?</h2>
         <p className={styles.sub}>Trusted by thousands of users across India.</p>
         <div className={styles.grid}>

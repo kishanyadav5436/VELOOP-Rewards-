@@ -69,6 +69,45 @@ export default function GiveawayHero() {
         <canvas ref={canvasRef} className={styles.particles} />
       </div>
 
+      {/* Floating Currency & Achievement Badges (Ambient Web3 Atmosphere) */}
+      <div className={styles.floatingAtmosphere} aria-hidden="true">
+        <div className={`${styles.floatingCard} ${styles.floatCard1}`}>
+          <div className={styles.floatIconWrap}>💎</div>
+          <div className={styles.floatInfo}>
+            <span className={styles.floatValue}>+500 VEs</span>
+            <span className={styles.floatLabel}>Daily Reward</span>
+          </div>
+          <span className={styles.floatSparkle}>✨</span>
+        </div>
+
+        <div className={`${styles.floatingCard} ${styles.floatCard2}`}>
+          <div className={`${styles.floatIconWrap} ${styles.iconGold}`}>⚡</div>
+          <div className={styles.floatInfo}>
+            <span className={styles.floatValue}>1,500 SVEs</span>
+            <span className={styles.floatLabel}>Boost Multiplier</span>
+          </div>
+        </div>
+
+        <div className={`${styles.floatingCard} ${styles.floatCard3}`}>
+          <div className={`${styles.floatIconWrap} ${styles.iconGreen}`}>🪙</div>
+          <div className={styles.floatInfo}>
+            <span className={styles.floatValue}>420 Tokens</span>
+            <span className={styles.floatLabel}>Ready to Enter</span>
+          </div>
+        </div>
+
+        <div className={`${styles.floatingCard} ${styles.floatCard4}`}>
+          <div className={styles.floatAvatar}>🏆</div>
+          <div className={styles.floatInfo}>
+            <div className={styles.floatUserRow}>
+              <span className={styles.floatUser}>VE****42</span>
+              <span className={styles.floatCheck}>✓</span>
+            </div>
+            <span className={styles.floatLabel}>Won PS5 • Verified</span>
+          </div>
+        </div>
+      </div>
+
       <div className={`container ${styles.content}`}>
         {/* Badge */}
         <div className={styles.badge}>
